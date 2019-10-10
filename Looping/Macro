@@ -24,24 +24,20 @@ Resources:
 
             FinalFragment= event["fragment"]
             
-            Number = FinalFragment["Parameters"]["NumberOfUsers"]
+            Number = event["templateParameterValues"]["NumberOfUsers"]
    
             #I declare a new dictionary to have the resources object
          
             NewUser = {}
-            NewUser = FinalFragment["Resources"]
-           
+            NewUser = FinalFragment["Resources"]           
 
-            for i in range(len(Number)):
+            for i in range(int(Number)):
     
            
               #I modify the IAM User resource logical id in order to add it later to "Resources" object the number of times requested 
 
-              NewUser["myuser"+str(i+2)] = NewUser["myuser"].copy()
-             
-              FinalFragment["Resources"].update(NewUser)
 
-              NewUser["EC2Instance"+str(i+2)] = NewUser["EC2Instance"].copy()
+              NewUser["EC2Instance"+str(i+1)] = NewUser["EC2Instance"].copy()
 
               FinalFragment["Resources"].update(NewUser)  
             
